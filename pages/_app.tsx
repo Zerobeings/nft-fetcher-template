@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThirdwebProvider
     dAppMeta={{
-      name: "nft-indexer",
+      name: "nft-fetcher",
       description: "locatia's nft fetcher template",
       logoUrl: "https://indexer.locatia.app/icon-384x384.png",
       url: "https://indexer.locatia.app",

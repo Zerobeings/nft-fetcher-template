@@ -10,9 +10,9 @@
     "scope": "/",
     "start_url": "/?source=pwa",
     "id": "/?source=pwa",
-    "name": "nft-indexer",
-    "short_name": "nft-indexer",
-    "description": "nft-indexer is a public utility for indexing nfts on various networks.",
+    "name": "nft-fetcher",
+    "short_name": "nft-fetcher",
+    "description": "nft-fetcher is a public utility for fetching nfts on various networks.",
     "orientation": "portrait",
     "dir": "ltr",
     "lang": "en",
@@ -24,7 +24,7 @@
     "prefer_related_applications": false,
     "protocol_handlers": [
       {
-        "protocol": "web+nftindexer",
+        "protocol": "web+nftfetcher",
         "url": "/?source=pwa%s"
       }
     ],
