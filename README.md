@@ -1,6 +1,6 @@
 # NFT Fetcher Template
 
-This is a template for [nft-etcher](https://www.npmjs.com/package/nft-fetcher) was built with Next.js and TypeScript. It allows users to explore NFTs from a specific contracts indexed by [nft-indexer](https://github.com/Zerobeings/nft-indexer) or your own mixtape db.
+This is a template for [nft-fetcher](https://www.npmjs.com/package/nft-fetcher) was built with Next.js and TypeScript. It allows users to explore NFTs from a specific contracts indexed by [nft-indexer](https://github.com/Zerobeings/nft-indexer) or your own mixtape db.
 
 ## Features
 
