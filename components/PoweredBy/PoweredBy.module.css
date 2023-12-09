@@ -1,0 +1,19 @@
+.power {
+    position: absolute;
+    bottom: 1rem;   /* bottom-4 in Tailwind corresponds to 1rem */
+    right: 1rem;    /* right-4 in Tailwind corresponds to 1rem */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 0.25rem;   /* spacing-1 in Tailwind corresponds to 0.25rem */
+  }
+
+  .git {
+    position: absolute;
+    bottom: 1rem;   /* bottom-4 in Tailwind corresponds to 1rem */
+    right: 4rem;    /* right-4 in Tailwind corresponds to 1rem */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 0.25rem; 
+  }

@@ -3,143 +3,129 @@
   max-width: 1440px;
   padding: 0 1rem;
   margin: 0 auto;
-}
-
-.gradientText0 {
-  background: -webkit-linear-gradient(#bfa3da, #84309c, #c735b0);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradientText1 {
-  background: -webkit-linear-gradient(#a79af9, #7aa8d2);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradientText2 {
-  background: -webkit-linear-gradient(#bfa3da, #743f93);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradientText3 {
-  background: -webkit-linear-gradient(#c35ab1, #e9a8d9);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-  text-decoration-color: #84309c;
+  text-align: center;
 }
 
 .title {
+  margin-top: 150px;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 3rem;
+  text-align: center;
 }
 
-.title,
-.description {
-  text-align: left;
-}
 
-.connect {
-  margin-bottom: 2rem;
-}
-
-.description {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
-
-.code {
-  background: #555;
-  border-radius: 5px;
-  padding: 0.5em;
-  font-size: 1.1rem;
-}
-
-.grid {
+.searchBarContainer {
   display: flex;
-  justify-content: left;
-  flex-wrap: wrap;
-  gap: 20px;
+  background-color: #e7e8e8;
+  justify-self: center;
+  width: 500px;
+  border: 3px solid #ccc;
+  border-radius: 13px;
+  box-sizing: border-box;
+  height: 63.5px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.card {
-  background-color: #131313;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 440px;
-  overflow: none;
-  border: none;
-}
-
-.cardText {
-  padding: 1rem;
-}
-
-.card img {
-  display: block;
+.searchBar {
+  height: 100%;
   width: 100%;
-  height: auto;
-  border-radius: 4px 4px 0 0;
-  margin-bottom: 12px;
+  flex: 1;
+  font-size: 24px;
+  border-radius: 12px;
+  color: #ccc;
+  background-color: transparent;
+  background-image: url('/icon-128x128.png');
+  background-position: 10px 12px; 
+  background-repeat: no-repeat;
+  background-size: 30px;
+  padding: 12px 20px 12px 50px;
+  align-items: center;
+  justify-self: center;
   border: none;
+  cursor: pointer;
 }
 
-.card:hover,
-.card:focus,
-.card:active {
-  background-color: #272c34;
-  opacity: 80%;
+.clearButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ccc;
+  font-size: 1.5em;
+  border-radius: 8px;
+  background-color: rgba(231, 232, 232, 0.407);
+  width: 60px;
+  cursor: pointer;
 }
 
-.card h2 {
-  margin: 0 0 0.75rem 0;
+
+.searchBarContainer:hover{
+  background-color: #070707;
+  color:#e7e8e8;
 }
 
-.card p {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.75;
+.searchBarContainer, .searchBar:focus{
+  outline: none;
 }
 
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
-}
 
 @media (max-width: 768px) {
-  .header {
-    margin-left: 0;
-  }
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
+
   .title {
-    font-size: 3rem;
-    line-height: 1.15;
+    margin-top: 180px;
+    line-height: 1;
+    font-size: 1.5rem;
+    text-align: center;
   }
+
+
+  .searchBarContainer {
+    position: absolute;
+    display: flex;
+    background-color: #e7e8e8;
+    justify-self: center;
+    width: 350px;
+    border: 3px solid #ccc;
+    border-radius: 13px;
+    box-sizing: border-box;
+    height: 63.5px;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .searchBar{
+    height: 100%;
+    width: 100%;
+    flex: 1;
+    font-size: 24px;
+    border-radius: 12px;
+    color: #ccc;
+    background-color: transparent;
+    background-image: url('/icon-128x128.png');
+    background-position: 10px 12px; 
+    background-repeat: no-repeat;
+    background-size: 30px;
+    padding: 12px 20px 12px 50px;
+    align-items: center;
+    justify-self: center;
+    border: none;
+    cursor: pointer;
+  }
+
+.clearButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ccc;
+  font-size: 1.5em;
+  border-radius: 8px;
+  background-color: rgba(231, 232, 232, 0.407);
+  width: 60px;
+  cursor: pointer;
 }
 
-.card,
-.footer {
-  border-color: #222;
-}
-.logo img {
-  filter: invert(1);
+
 }
