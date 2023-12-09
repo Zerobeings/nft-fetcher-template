@@ -11,8 +11,8 @@ This is a template for an NFT Fetcher built with Next.js and TypeScript. It allo
 ## Installation
 
 1. Clone the repository
-2. Install dependencies with `npm install`
-3. Start the development server with `npm run dev`
+2. Install dependencies with `yarn install`
+3. Start the development server with `yarn dev`
 
 ## Usage
 
