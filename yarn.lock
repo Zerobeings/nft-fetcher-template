@@ -6246,10 +6246,10 @@ nextjs-progressbar@^0.0.16:
     nprogress "^0.2.0"
     prop-types "^15.8.1"
 
-nft-fetcher@^0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/nft-fetcher/-/nft-fetcher-0.0.12.tgz#fcbc04c06c708a1e8ad33dbc380645c95ed31eb7"
-  integrity sha512-tIAKWtc4b2BO3b2G8bn8sbVK4dJNePQzMz9Kw38ZOP35faChpEWXR06FLJp2UZlZXOVR3XXwRwRTp6mjCjTXlw==
+nft-fetcher@^0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/nft-fetcher/-/nft-fetcher-0.0.14.tgz#3942a78f30e71f89a875e67b00b877f3fdd1cd21"
+  integrity sha512-wXMKHSQ86SNCxaf1Yb4RUj3pHSZigH7UuLEW27bFn7RUpxATX1GDJLiZpQLEiG6UzYCgKKrsnJQmwrsWNmvQfw==
   dependencies:
     "@babel/plugin-proposal-private-property-in-object" "^7.21.11"
     axios "^1.6.2"
