@@ -19,7 +19,7 @@
     "file-loader": "^6.2.0",
     "next": "^13",
     "nextjs-progressbar": "^0.0.16",
-    "nft-fetcher": "^0.0.14",
+    "nft-fetcher": "^1.0.3",
     "react": "^18.2",
     "react-dom": "^18.2",
     "react-hot-toast": "^2.4.1",

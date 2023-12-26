@@ -39,15 +39,10 @@ export default function Contract() {
                 if (chain) {
                     setNetwork(chain['slug']);
                 }
-                const limit = 100;
-                const start = 0;
-                const where = [] as any[];
-                const select = "*";
-                const dbURL = ""
                 if(contractAddress && network && chain) {
                     try {
                         console.log('Fetching NFTs...');
-                        const nfts = await getMixtapeNFTs(contractAddress, limit, start, select, where, dbURL, network);
+                        const nfts = await getMixtapeNFTs(contractAddress, network);
                         console.log(nfts);
                         setNfts(nfts);
                         const attributes = extractAttributes(nfts);
@@ -97,7 +92,7 @@ export default function Contract() {
         if(contractAddress && network && chain) {
             try {
                 console.log('Fetching Query...');
-                const nfts = await getMixtapeNFTs(contractAddress, limit, start, select, where, dbURL, network);
+                const nfts = await getMixtapeNFTs(contractAddress, network, {limit: limit, start: start, where: where});
                 console.log(nfts);
                 setNfts(nfts);
                 setLoading(false);
@@ -127,7 +122,7 @@ export default function Contract() {
         if(contractAddress && network && chain) {
             try {
                 console.log('Fetching Query...');
-                const nfts = await getMixtapeNFTs(contractAddress, limit, start, select, where, dbURL, network);
+                const nfts = await getMixtapeNFTs(contractAddress, network, {limit: limit, start: start, where: where});
                 console.log(nfts);
                 setNfts(nfts);
                 setLoading(false);
