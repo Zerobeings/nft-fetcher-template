@@ -18,50 +18,12 @@ const Home: NextPage = () => {
         setIsOpen(!isOpen);
     };
 
-    const handleInputChange = (e:any) => {
-      const query = e.target.value;
-      setSearch(query);
-    };
-  
-    const handleClearSearch = () => {
-      setSearch("");
-    };
-
-    const handleSuggestionClick = (search:string) => {
-        setSearch('');
-        router.push(`/${search}`).then(() => {
-          window.location.reload();
-        });
-      };
 
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <h4 className={styles.title}>
-          edit <code>`pages/index.tsx`</code> to begin.
-        </h4>
-
-          <div className={styles.searchBarContainer}>
-            <input
-            className={styles.searchBar}
-            type={"text"}
-            placeholder="collection address"
-            onChange={handleInputChange}
-            onKeyPress={event => {
-              if (event.key === 'Enter' && search) {
-                handleSuggestionClick(search);
-              };
-              }}
-            value={search}
-            />
-              {search && (
-              <button className={styles.clearButton} onClick={handleClearSearch}>
-                X
-              </button>
-            )}
-          </div>
-        </div>
-
+        <h3 className={styles.heading}>yarn add nft-fetcher</h3>
+      </div>
       <PoweredBy />
       <GitHub />
     </main>

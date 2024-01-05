@@ -3,7 +3,7 @@ import styles from "./PoweredBy.module.css";
 export const GitHub: React.FC = () => {
     return (
     <div onClick={() => {
-      window.open("https://github.com/Zerobeings/nft-indexer", "_blank");
+      window.open("https://github.com/Zerobeings/nft-fetcher", "_blank");
       }}
       className={styles.git}
     >

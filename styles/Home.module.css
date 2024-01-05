@@ -6,68 +6,18 @@
   text-align: center;
 }
 
-.title {
-  margin-top: 150px;
-  line-height: 1.15;
-  font-size: 3rem;
-  text-align: center;
-}
-
-
-.searchBarContainer {
-  display: flex;
-  background-color: #e7e8e8;
-  justify-self: center;
-  width: 500px;
-  border: 3px solid #ccc;
-  border-radius: 13px;
-  box-sizing: border-box;
-  height: 63.5px;
+.heading {
+  margin-top: 350px;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
+  margin-bottom: 50px;
+  background-color: #333; 
+  color: #e7e8e8;
+  width: 300px;
+  padding: 10px;
+  border-radius: 15px;
 }
-
-.searchBar {
-  height: 100%;
-  width: 100%;
-  flex: 1;
-  font-size: 24px;
-  border-radius: 12px;
-  color: #ccc;
-  background-color: transparent;
-  background-image: url('/icon-128x128.png');
-  background-position: 10px 12px; 
-  background-repeat: no-repeat;
-  background-size: 30px;
-  padding: 12px 20px 12px 50px;
-  align-items: center;
-  justify-self: center;
-  border: none;
-  cursor: pointer;
-}
-
-.clearButton {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #ccc;
-  font-size: 1.5em;
-  border-radius: 8px;
-  background-color: rgba(231, 232, 232, 0.407);
-  width: 60px;
-  cursor: pointer;
-}
-
-
-.searchBarContainer:hover{
-  background-color: #070707;
-  color:#e7e8e8;
-}
-
-.searchBarContainer, .searchBar:focus{
-  outline: none;
-}
-
 
 @media (max-width: 768px) {
 
@@ -77,55 +27,6 @@
     font-size: 1.5rem;
     text-align: center;
   }
-
-
-  .searchBarContainer {
-    position: absolute;
-    display: flex;
-    background-color: #e7e8e8;
-    justify-self: center;
-    width: 350px;
-    border: 3px solid #ccc;
-    border-radius: 13px;
-    box-sizing: border-box;
-    height: 63.5px;
-    z-index: 1;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .searchBar{
-    height: 100%;
-    width: 100%;
-    flex: 1;
-    font-size: 24px;
-    border-radius: 12px;
-    color: #ccc;
-    background-color: transparent;
-    background-image: url('/icon-128x128.png');
-    background-position: 10px 12px; 
-    background-repeat: no-repeat;
-    background-size: 30px;
-    padding: 12px 20px 12px 50px;
-    align-items: center;
-    justify-self: center;
-    border: none;
-    cursor: pointer;
-  }
-
-.clearButton {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #ccc;
-  font-size: 1.5em;
-  border-radius: 8px;
-  background-color: rgba(231, 232, 232, 0.407);
-  width: 60px;
-  cursor: pointer;
-}
 
 
 }

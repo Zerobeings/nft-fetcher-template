@@ -1,18 +1,17 @@
 import {
     useAddress,
-    useContract,
-    useChain,
+    useContract
 } from "@thirdweb-dev/react";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import type { NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import styles from "../styles/Contract.module.css";
-import NFTCard from "../components/NFTCard/NFTCard";
-import Container from "../components/Container/Container";
+import styles from "../../styles/Contract.module.css";
+import NFTCard from "../../components/NFTCard/NFTCard";
+import Container from "../../components/Container/Container";
 import { GridLoader } from "react-spinners";
-import Filter from "../components/Filter/Filter";
+import Filter from "../../components/Filter/Filter";
 import getMixtapeNFTs from 'nft-fetcher';
 
 interface Attributes {
@@ -23,23 +22,19 @@ export default function Contract() {
     const address = useAddress();
     const router = useRouter();
     const contractAddress = router.query.contract as string;
-    const chain = useChain();
+    const network = router.query.network as string;
     const [NFTs, setNfts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [network, setNetwork] = useState<string>('ethereum');
     const [isProcessing, setIsProcessing] = useState<boolean>(true);
     const [atBottom, setAtBottom] = useState<boolean>(false);
     const [attributes, setAttributes] = useState<Attributes>({});
-    const [searchCleared, setSearchCleared] = useState(false);
     
     //Fetch NFTs from contract
     useEffect(() => {
         (async () => {
             if (!isProcessing) {
-                if (chain) {
-                    setNetwork(chain['slug']);
-                }
-                if(contractAddress && network && chain) {
+                console.log('Fetching NFTs...');
+                if(contractAddress && network) {
                     try {
                         console.log('Fetching NFTs...');
                         const nfts = await getMixtapeNFTs(contractAddress, network);
@@ -55,7 +50,7 @@ export default function Contract() {
                 }
             }
         })();
-    }, [contractAddress, network, chain, isProcessing]);
+    }, [contractAddress, network, isProcessing]);
 
     useEffect(() => {
         setInterval(() => {
@@ -89,7 +84,8 @@ export default function Contract() {
         const where = selectedAttribute !== "" ? [selectedAttribute] as any[] : [] as any[];
         const select = "*";
         const dbURL = ""
-        if(contractAddress && network && chain) {
+        if(contractAddress && network) {
+            setLoading(true);
             try {
                 console.log('Fetching Query...');
                 const nfts = await getMixtapeNFTs(contractAddress, network, {limit: limit, start: start, where: where});
@@ -119,7 +115,8 @@ export default function Contract() {
         const where = selectedAttribute !== "" ? [selectedAttribute] as any[] : [] as any[];
         const select = "*";
         const dbURL = ""
-        if(contractAddress && network && chain) {
+        if(contractAddress && network) {
+            setLoading(true);
             try {
                 console.log('Fetching Query...');
                 const nfts = await getMixtapeNFTs(contractAddress, network, {limit: limit, start: start, where: where});
@@ -143,15 +140,28 @@ export default function Contract() {
             </div>
             <div className={styles.container}>
                 <div className={styles.grid}>
-                {NFTs && chain &&
+                {NFTs && NFTs.length > 0 &&
                     NFTs.map((nft, i) => (
                         <NFTCard nft={nft} key={i} network={network} contractAddress={contractAddress} onAttributeSelect={handleAttributeFromCard}></NFTCard>
                     ))
                 }
-                {loading && 
-                    <GridLoader className={styles.loader}/>
-                }
                 </div>
+                {loading ?
+                    <GridLoader className={styles.loader}/>
+                : NFTs && NFTs.length === 0 &&
+                    <>
+                        <h1 className={styles.heading}>No NFTs found</h1>
+                       {address ?
+                        <div className={styles.btnContainer}>
+                            <Link className={styles.indexBtn} href="/request">Index this Collection</Link>
+                        </div>
+                        :
+                        <div className={styles.btnContainer}>
+                            <p>Connect Wallet to submit a request</p>
+                        </div>
+                        }
+                    </>
+                }
             </div>
         </Container>
     );

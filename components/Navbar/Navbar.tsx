@@ -1,48 +1,73 @@
-import { ConnectWallet, useAddress, lightTheme } from "@thirdweb-dev/react";
+import { ConnectWallet, useAddress, lightTheme, MediaRenderer, useChain } from "@thirdweb-dev/react";
 import Image from "next/image";
 import Link from "next/link";
 import stylesNav from "./Navbar.module.css";
 import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from 'next/router';
 
-
 export default function Navbar() {
   const [search, setSearch] = useState<string>("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [collections, setCollections] = useState<any[]>([]);
+  const [network, setNetwork] = useState<string>("");
   const address = useAddress();
   const router = useRouter();
+  const chain = useChain();
   const [isOpen, setIsOpen] = useState(false);
-  const toggleMenu = () => {
-      setIsOpen(!isOpen);
-  };
-  const [hideNavbar, setHideNavbar] = useState(false);
-
-  useEffect (() => {
-    try{
-        if (router.pathname === '/index') {
-          setHideNavbar(true);
-        } else if (router.pathname === '/[contract]') {
-          setHideNavbar(false);
-        }
-      } catch (error) {
-        console.error('Error hiding navbar:', error);
-      }
-  }, [setHideNavbar, router.pathname])
-
-  const handleInputChange = (e:any) => {
-    const query = e.target.value;
-    setSearch(query);
-  };
-
-  const handleClearSearch = () => {
-    setSearch("");
-  };
-
-  const handleSuggestionClick = (search:string) => {
-      setSearch('');
-      router.push(`/${search}`).then(() => {
-        window.location.reload();
-      });
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
     };
+
+    const handleInputChange = (e:any) => {
+      const query = e.target.value;
+      setSearch(query);
+      setShowSuggestions(query !== '');
+    };
+  
+    const handleClearSearch = () => {
+      setSearch("");
+      setShowSuggestions(false);
+    };
+
+    const handleSuggestionClick = (search:string) => {
+        setSearch('');
+        setShowSuggestions(false);
+        router.push(`/${network}/${search}`).then(() => {
+          window.location.reload();
+        });
+      };
+
+
+
+  useEffect(() => {
+    (async () => {
+    try{
+      if (chain && chain.chain.toLowerCase() === "ethereum" || network === "ethereum") {
+      const collection = await fetch("https://nft-indexer-ten.vercel.app/eth-directory/directory.json");
+      const collectionJson = await collection.json();
+      setCollections(collectionJson);
+      } else if (chain && chain.chain.toLowerCase() === "polygon" || network === "polygon") {
+      const collection = await fetch("https://nft-indexer-ten.vercel.app/poly-directory/directory.json");
+      const collectionJson = await collection.json();
+      setCollections(collectionJson);
+      } else if (chain && chain.chain.toLowerCase() === "avalanche" || network === "avalanche") {
+        const collection = await fetch("https://nft-indexer-ten.vercel.app/avax-directory/directory.json");
+        const collectionJson = await collection.json();
+        setCollections(collectionJson);
+      } else if (chain && chain.chain.toLowerCase() === "fantom" || network === "fantom") {
+        const collection = await fetch("https://nft-indexer-ten.vercel.app/ftm-directory/directory.json");
+        const collectionJson = await collection.json();
+        setCollections(collectionJson);
+      } else {
+        const collection = await fetch("https://nft-indexer-ten.vercel.app/eth-directory/directory.json");
+        const collectionJson = await collection.json();
+        setCollections(collectionJson);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  })();
+  }, [chain,network]);
   
   return (
     
@@ -92,19 +117,32 @@ export default function Navbar() {
         </div>
       </div>
       <div className={stylesNav.placeholder}>
-        </div>
-      {hideNavbar &&
-       <div className={stylesNav.searchBarContainer}>
+      </div>
+       <div className={stylesNav.searchBg}>
+        <div className={stylesNav.searchBarContainer}>
+        <div className={stylesNav.selectorContainer}>
+        <select
+          className={stylesNav.selectNetwork}
+          value={network}
+          onChange={(e) => setNetwork(e.target.value)}
+        >
+          <option value="ethereum">Network?</option>
+          <option value="ethereum">Ethereum</option>
+          <option value="polygon">Polygon</option>
+          <option value="avalanche">Avalanche</option>
+          <option value="fantom">Fantom</option>
+        </select>
+       </div>
           <input
           className={stylesNav.searchBar}
           type={"text"}
-          placeholder="check collection"
+          placeholder="Name/Address"
           onChange={handleInputChange}
           onKeyPress={event => {
             if (event.key === 'Enter' && search) {
               handleSuggestionClick(search);
             };
-            }}
+          }}
           value={search}
           />
             {search && (
@@ -113,7 +151,26 @@ export default function Navbar() {
             </button>
           )}
         </div>
-        }
+        {showSuggestions && (
+          <div className={stylesNav.suggestionsContainer}>
+            {collections && collections
+              .filter((collection) =>
+              collection.name.toLowerCase().includes(search.toLowerCase())
+              )
+              .slice(0, 6)
+              .map((collection, index) => (
+                    <div
+                      key={index}
+                      className={stylesNav.suggestion}
+                      onClick={() => handleSuggestionClick(collection.contract)}
+                    >
+                      <MediaRenderer src={collection.image} alt={collection.contract} className={stylesNav.suggestionLogo} width={"20"} height={"20"} />
+                      <span>{collection.name}</span>
+                    </div>
+              ))}
+          </div>
+        )}
+        </div>
       <div className={stylesNav.navRight}>
         <ConnectWallet
           theme={lightTheme({
@@ -130,13 +187,12 @@ export default function Navbar() {
             },
           })}
           btnTitle={"login"}
-          modalTitle={"nft fetcher"}
-          switchToActiveChain={true}
+          modalTitle={"nft indexer"}
           modalSize={"wide"}
           welcomeScreen={{
-            title: "nft fetcher",
+            title: "nft indexer",
             subtitle:
-              "Login in.",
+              "Login in to check indexed nfts or to submit a collection for indexing.",
             img: {
               src: "https://indexer.locatia.app/icon-512x512.png",
               width: 150,
@@ -145,6 +201,9 @@ export default function Navbar() {
           }}
           modalTitleIconUrl={
             "https://indexer.locatia.app/icon-384x384.png"
+          }
+          privacyPolicyUrl={
+            "https://www.privacypolicytemplate.net/live.php?token=nhTPoMIeOzVU56HL0ltZg1aFaK7mtlNl"
           }
         />
       </div>
