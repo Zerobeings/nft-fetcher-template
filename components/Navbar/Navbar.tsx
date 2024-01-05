@@ -126,7 +126,7 @@ export default function Navbar() {
           value={network}
           onChange={(e) => setNetwork(e.target.value)}
         >
-          <option value="ethereum">Network?</option>
+          <option value="">Network?</option>
           <option value="ethereum">Ethereum</option>
           <option value="polygon">Polygon</option>
           <option value="avalanche">Avalanche</option>
